@@ -1,6 +1,7 @@
 const path = require('path');
  const HtmlWebpackPlugin = require('html-webpack-plugin');
  const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
  module.exports = {
    mode: 'development',
@@ -16,6 +17,9 @@ const path = require('path');
      new HtmlWebpackPlugin({
        title: 'Crispy Enigma',
      }),
+     new MiniCssExtractPlugin({
+      filename: '[name].css',
+    }),
    ],
    output: {
      filename: '[name].bundle.js',
@@ -30,6 +34,10 @@ const path = require('path');
         options: {
           presets: ['@babel/preset-env', '@babel/react'],
         },
+      },
+      {
+        test: /\.(sa|sc|c)ss$/,
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
     ],
   },

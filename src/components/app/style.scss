@@ -1,0 +1,13 @@
+@import '../styleguide';
+
+#app-container {
+    header {
+      height: 120px;
+      background: $medium-blue;
+    }
+    .body {
+      background: $catskill-white;
+      width: 100%;
+      height: 100%;
+    }
+}
