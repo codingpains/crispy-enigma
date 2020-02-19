@@ -1,4 +1,7 @@
 import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import PeopleTable from '../people-table';
+
 import './style.scss';
 const App = () => (
   <React.Fragment>
@@ -9,11 +12,15 @@ const App = () => (
     </header>
     <div className="body">
       <div className="container">
+        <Router>
+          <Route path="/:filter?" component={PeopleTable} />
+        </Router>
       </div>
     </div>
     <footer>
     </footer>
   </React.Fragment>
 );
+
 
 export default App;

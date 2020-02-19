@@ -5,6 +5,7 @@ import thunkMiddleware from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
 import rootReducer from './data/reducers';
 import Root from './components/root';
+import App from './components/app';
 
 const store = createStore(
   rootReducer,
@@ -12,6 +13,10 @@ const store = createStore(
   applyMiddleware(thunkMiddleware)
 );
 
-ReactDOM.render(
-  <Root store={store} />, document.getElementById('app-container'),
+const root = (
+  <Root store={store}>
+    <App />
+  </Root>
 );
+
+ReactDOM.render(root, document.getElementById('app-container'));
