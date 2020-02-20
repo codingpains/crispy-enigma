@@ -12,10 +12,12 @@ const App = () => (
       </div>
     </header>
     <div className="body">
-      <div className="container">
-        <Router>
-          <Route path="/:filter?" component={connectPeopleTable(PeopleTable)} />
-        </Router>
+      <div className="content">
+        <div className="container">
+          <Router>
+            <Route path="/:filter?" component={connectPeopleTable(PeopleTable)} />
+          </Router>
+        </div>
       </div>
     </div>
     <footer>
