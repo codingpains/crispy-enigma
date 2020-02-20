@@ -24,6 +24,7 @@ class Pagination extends React.PureComponent {
   }
 
   goToNextPage = () => this.props.onPageChange(PER_PAGE, this.nextPage);
+
   goToPrevPage = () => this.props.onPageChange(PER_PAGE, this.prevPage);
 
   render() {
@@ -31,14 +32,14 @@ class Pagination extends React.PureComponent {
       <nav aria-label="people-table-pagination">
         <ul className="pagination">
         <li className={`page-item ${this.prevPage ? '' : 'disabled'}`}>
-          <a className="page-link"
+          <a className="page-link prev-page"
             href="#"
             onClick={this.goToPrevPage}>
             Previous
           </a>
         </li>
         <li className={`page-item ${this.nextPage ? '' : 'disabled'}`}>
-          <a className="page-link"
+          <a className="page-link next-page"
             href="#"
             onClick={this.goToNextPage}
             >
