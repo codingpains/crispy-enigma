@@ -1,9 +1,12 @@
 import { connect } from 'react-redux';
 import { fetchPeople } from '../../data/actions';
+import get from 'lodash/get';
 
 const mapStateToProps = (state) => {
   return {
-    people: state.people.data,
+    people: get(state, 'people.data'),
+    prevPage: get(state, 'people.metadata.paging.prevPage'),
+    nextPage: get(state, 'people.metadata.paging.nextPage'),
   };
 };
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types'
+import Pagination from '../pagination';
 
 class PeopleTable extends React.PureComponent {
   static propTypes = {
@@ -18,7 +19,7 @@ class PeopleTable extends React.PureComponent {
 
   renderPeople() {
     return this.props.people.map(person => (
-      <tr>
+      <tr key={person.id}>
         <th scope="row">{person.id}</th>
         <td>{[person.firstName, person.lastName].join(' ')}</td>
         <td>{person.emailAddress}</td>
@@ -27,21 +28,34 @@ class PeopleTable extends React.PureComponent {
     ));
   }
 
+  renderPagination() {
+    return (
+      <Pagination
+        onPageChange={this.props.onLoadPeople}
+        prevPage={this.props.prevPage}
+        nextPage={this.props.nextPage}
+      />
+    );
+  }
+
   render() {
     return (
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Job Title</th>
-          </tr>
-        </thead>
-        <tbody>
-          {this.renderPeople()}
-        </tbody>
-      </table>
+      <React.Fragment>
+        {this.renderPagination()}
+        <table className="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Job Title</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.renderPeople()}
+          </tbody>
+        </table>
+      </React.Fragment>
     )
   }
 };

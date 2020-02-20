@@ -1,9 +1,9 @@
 const SalesLoft = require('../gateways/salesloft-api')
 
 const getPeople = (req, res) => {
-  const { perPage, page } = req.params;
+  const { per_page, page } = req.query;
 
-  SalesLoft.get('/people', {params: { perPage, page }})
+  SalesLoft.get('/people', {params: { per_page, page }})
     .then(({data}) => res.json(data))
     .catch(err => {
       res.status(500);
