@@ -1,17 +1,14 @@
-require('dotenv').config()
 import axios from 'axios';
 import snakeobj from 'snakeobj';
 import camelobj from 'camelobj';
 
-const {
-  API_HOST,
-  API_KEY,
-} = process.env;
+const { API_HOST } = process.env;
 
 const api = axios.create();
 api.defaults.baseURL = API_HOST;
 api.defaults.headers.common['Content-Type'] = 'application/json';
 api.defaults.headers.common.Accept = 'application/json';
+api.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 
 // Apply middleware to send data in snake case but get it camel case
 api.defaults.transformRequest = [
@@ -27,11 +24,6 @@ api.defaults.transformResponse = [
   ...axios.defaults.transformResponse,
   data => camelobj(data),
 ];
-
-api.interceptors.request.use(config => {
-  config.headers.Authorization = `Bearer ${API_KEY}`;
-  return config;
-});
 
 export default {
   get: api.get,

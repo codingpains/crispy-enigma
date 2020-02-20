@@ -1,21 +1,28 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 
 class PeopleTable extends React.PureComponent {
-  get people() {
-      return [
-        { id: 1, name: 'Jon Snow', email: 'winteriscomming@gmail.com', jobTitle: 'Lord Commander' },
-        { id: 2, name: 'Varys', email: 'spider@kingslanding', jobTitle: 'Master of whispers' },
-        { id: 3, name: 'Jora Mormonth', email: 'ilovedanny@gmail.com', jobTitle: 'Friendzone expert'},
-      ];
+  static propTypes = {
+    people: PropTypes.array,
+    onLoadPeople: PropTypes.func.isRequired,
+  };
+
+  static defaultProps = {
+    people: [],
+  };
+
+  constructor(props) {
+    super(props);
+    this.props.onLoadPeople();
   }
 
   renderPeople() {
-    return this.people.map(person => (
+    return this.props.people.map(person => (
       <tr>
         <th scope="row">{person.id}</th>
-        <td>{person.name}</td>
-        <td>{person.email}</td>
-        <td>{person.jobTitle}</td>
+        <td>{[person.firstName, person.lastName].join(' ')}</td>
+        <td>{person.emailAddress}</td>
+        <td>{person.title}</td>
       </tr>
     ));
   }

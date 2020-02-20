@@ -5,7 +5,6 @@ export const FETCH_PEOPLE = 'FETCH_POSTS_REQUEST';
 export const FETCH_PEOPLE_SUCCESS = 'FETCH_PEOPLE_SUCCESS';
 export const FETCH_PEOPLE_FAILED = 'FETCH_PEOPLE_FAILED';
 
-
 export const fetchPeople = (perPage = 25, page = 1) => (
   (dispatch) => {
     dispatch({ type: FETCH_PEOPLE, payload: { perPage, page } });

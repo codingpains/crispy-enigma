@@ -5,7 +5,7 @@ import { expect } from 'chai';
 import nock from 'nock';
 
 dotenv.config();
-
+console.log('ENV -> ', process.env.API_HOST)
 import {
   fetchPeople,
   FETCH_PEOPLE,
@@ -27,10 +27,10 @@ describe('fetchPeople', () => {
       ]
     };
 
-    nock(process.env.API_HOST)
-      .filteringPath(path => '/v2/people')
-      .get('/people')
-      .reply(200, mockData);
+    // nock(process.env.API_HOST)
+    //   .filteringPath(path => '/v2/people')
+    //   .get('/people')
+    //   .reply(200, mockData);
 
     const expectedActions = [
       { type: FETCH_PEOPLE, payload: { perPage: 25, page: 1 }},
@@ -39,6 +39,7 @@ describe('fetchPeople', () => {
 
     const store = mockStore({ people: [] })
     return store.dispatch(fetchPeople()).then(() => {
+      console.log(store.getActions()[1])
       expect(store.getActions()).to.eql(expectedActions);
     })
   })

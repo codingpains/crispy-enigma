@@ -1,8 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import PeopleTable from '../people-table';
+import { PeopleTable, connectPeopleTable } from '../people-table';
 
 import './style.scss';
+
 const App = () => (
   <React.Fragment>
     <header>
@@ -13,7 +14,7 @@ const App = () => (
     <div className="body">
       <div className="container">
         <Router>
-          <Route path="/:filter?" component={PeopleTable} />
+          <Route path="/:filter?" component={connectPeopleTable(PeopleTable)} />
         </Router>
       </div>
     </div>

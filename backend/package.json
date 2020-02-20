@@ -1,0 +1,30 @@
+{
+  "name": "crispy-backend",
+  "version": "1.0.0",
+  "description": "SalesLoft Engineering Offline Excercise",
+  "scripts": {
+    "start": "nodemon ./server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codingpains/crispy-backend.git"
+  },
+  "author": "Gustavo Ortiz @codingpains",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/codingpains/crispy-backend/issues"
+  },
+  "homepage": "https://github.com/codingpains/crispy-backend#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "camelobj": "0.0.7",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "snakeobj": "0.0.7"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}

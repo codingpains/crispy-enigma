@@ -22,6 +22,7 @@
     "bootstrap": "^4.3.1",
     "camelobj": "0.0.7",
     "dotenv": "^8.2.0",
+    "dotenv-webpack": "^1.7.0",
     "lodash": "^4.17.11",
     "npm": "^6.9.2",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
