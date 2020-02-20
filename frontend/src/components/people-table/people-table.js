@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 import Pagination from '../pagination';
+import PersonRow from './person-row';
 
 class PeopleTable extends React.PureComponent {
   static propTypes = {
@@ -18,14 +19,7 @@ class PeopleTable extends React.PureComponent {
   }
 
   renderPeople() {
-    return this.props.people.map(person => (
-      <tr key={person.id}>
-        <th scope="row">{person.id}</th>
-        <td>{[person.firstName, person.lastName].join(' ')}</td>
-        <td>{person.emailAddress}</td>
-        <td>{person.title}</td>
-      </tr>
-    ));
+    return this.props.people.map(person => <PersonRow key={person.id} {...person} />);
   }
 
   renderPagination() {
@@ -40,7 +34,7 @@ class PeopleTable extends React.PureComponent {
 
   render() {
     return (
-      <React.Fragment>
+      <div className="people-table">
         {this.renderPagination()}
         <table className="table table-striped">
           <thead>
@@ -55,7 +49,7 @@ class PeopleTable extends React.PureComponent {
             {this.renderPeople()}
           </tbody>
         </table>
-      </React.Fragment>
+      </div>
     )
   }
 };
