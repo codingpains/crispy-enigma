@@ -26,6 +26,9 @@ PGUSER=user_with_db_access
 * run `npm start` to get the client running, it will bind to port 8080.
 * You're all set
 
+# This app looks like this
+![Topology](./topology.png)
+
 # Problems to solve.
 
 ## See all people available in SalesLoft API.
