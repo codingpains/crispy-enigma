@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types'
 import Pagination from '../pagination';
 import PersonRow from './person-row';
-import ConnectedEmailLettersModal from '../email-letters-modal';
+import { ConnectedEmailLettersModal } from '../email-letters-modal';
 import './style.scss';
 
 const modalId = 'lettersModal';
