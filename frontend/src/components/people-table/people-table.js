@@ -2,6 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types'
 import Pagination from '../pagination';
 import PersonRow from './person-row';
+import ConnectedEmailLettersModal from '../email-letters-modal';
+import './style.scss';
+
+const modalId = 'lettersModal';
 
 class PeopleTable extends React.PureComponent {
   static propTypes = {
@@ -32,10 +36,27 @@ class PeopleTable extends React.PureComponent {
     );
   }
 
+  renderButtons() {
+    return (
+      <div className="buttons-container">
+        <button
+          type="button"
+          className="btn btn-primary"
+          data-toggle="modal"
+          data-target={`#${modalId}`}>
+          See email letters count
+        </button>
+      </div>
+    );
+  }
+
   render() {
     return (
       <div className="people-table">
-        {this.renderPagination()}
+        <div className="table-toolbar">
+          {this.renderPagination()}
+          {this.renderButtons()}
+        </div>
         <table className="table table-striped">
           <thead>
             <tr>
@@ -48,6 +69,7 @@ class PeopleTable extends React.PureComponent {
             {this.renderPeople()}
           </tbody>
         </table>
+        <ConnectedEmailLettersModal modalId={modalId}/>
       </div>
     )
   }
