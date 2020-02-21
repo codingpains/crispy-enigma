@@ -4,6 +4,7 @@
   "description": "SalesLoft Engineering Offline Excercise",
   "scripts": {
     "start": "nodemon ./server.js",
+    "populate": "node workers/data-loader.js && node workers/duplication-finder.js",
     "migrate": "DATABASE_URL=$(grep DB_URL .env | cut -d '=' -f2) node-pg-migrate up",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
