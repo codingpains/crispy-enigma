@@ -1,6 +1,6 @@
 const SalesLoft = require('../gateways/salesloft-api')
 
-const getPeople = (req, res) => {
+const getPeople = context => (req, res) => {
   const { per_page, page } = req.query;
 
   SalesLoft.get('/people', {params: { per_page, page }})
