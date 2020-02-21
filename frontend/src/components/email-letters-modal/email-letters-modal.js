@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Chart from 'chart.js';
+import './style.scss';
 
 class EmailLettersModal extends React.PureComponent {
   static propTypes = {
@@ -32,11 +33,9 @@ class EmailLettersModal extends React.PureComponent {
       data: {
         labels: this.letters,
         datasets: [{
-          label: 'Letter frequencies',
+          label: 'Most frequent letter',
           backgroundColor: this.buildRandomColors(),
           barPercentage: 0.5,
-          barThickness: 6,
-          maxBarThickness: 8,
           minBarLength: 2,
           data: this.data,
         }]
@@ -60,7 +59,7 @@ class EmailLettersModal extends React.PureComponent {
 
   render() {
     return (
-      <div className="modal fade" id={this.props.modalId} role="dialog" aria-hidden="true">
+      <div className="modal fade email-letters-modal" id={this.props.modalId} role="dialog" aria-hidden="true">
         <div className="modal-dialog" role="document">
           <div className="modal-content">
             <div className="modal-body">

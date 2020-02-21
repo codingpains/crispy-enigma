@@ -2,8 +2,16 @@
 
 #app-container {
     header {
-      height: 120px;
       background: $medium-blue;
+      .container {
+        height: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        h1 {
+          color: $catskill-white;
+        }
+      }
     }
     .body {
       display: flex;

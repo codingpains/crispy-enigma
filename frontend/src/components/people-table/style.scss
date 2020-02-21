@@ -1,4 +1,12 @@
+@import '../_styleguide';
+
 .table-toolbar {
   display: flex;
   justify-content: space-between;
+  margin: 20px 0;
+  .buttons-container {
+    min-width: 50%;
+    display: flex;
+    justify-content: space-between;
+  }
 }
