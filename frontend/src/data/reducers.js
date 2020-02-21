@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-import { FETCH_PEOPLE_SUCCESS, FETCH_FREQUENCIES_SUCCESS } from './actions';
+import { types } from './actions';
 
 const people = (state = {}, action) => {
   switch (action.type) {
-    case FETCH_PEOPLE_SUCCESS:
+    case types.FETCH_PEOPLE_SUCCESS:
       return { ...action.data };
     default:
       return state;
@@ -12,7 +12,7 @@ const people = (state = {}, action) => {
 
 const emailLetterFrequencies = (state = {}, action) => {
   switch (action.type) {
-    case FETCH_FREQUENCIES_SUCCESS:
+    case types.FETCH_FREQUENCIES_SUCCESS:
       return parseFrequencies(action.data);
     default:
       return state;

@@ -1,14 +1,13 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import nock from 'nock';
+import camelobj from 'camelobj';
 
 import {
   fetchPeople,
   fetchEmailLetterFrequencies,
-  FETCH_PEOPLE,
-  FETCH_PEOPLE_SUCCESS,
-  FETCH_FREQUENCIES,
-  FETCH_FREQUENCIES_SUCCESS,
+  fetchDuplicatedPeople,
+  types,
 } from '../../src/data/actions';
 
 const middlewares = [thunk]
@@ -32,8 +31,8 @@ describe('fetchPeople', () => {
       .reply(200, mockData);
 
     const expectedActions = [
-      { type: FETCH_PEOPLE, payload: { perPage: 25, page: 1 }},
-      { type: FETCH_PEOPLE_SUCCESS, data: mockData },
+      { type: types.FETCH_PEOPLE, payload: { perPage: 25, page: 1 }},
+      { type: types.FETCH_PEOPLE_SUCCESS, data: mockData },
     ];
 
     const store = mockStore({ people: [] })
@@ -57,12 +56,47 @@ describe('fetchEmailLetterFrequencies', () => {
       .reply(200, mockData);
 
     const expectedActions = [
-      { type: FETCH_FREQUENCIES },
-      { type: FETCH_FREQUENCIES_SUCCESS, data: mockData },
+      { type: types.FETCH_FREQUENCIES },
+      { type: types.FETCH_FREQUENCIES_SUCCESS, data: mockData },
     ];
 
-    const store = mockStore({ people: [] })
+    const store = mockStore({ emailLetterFrequencies: [] })
     return store.dispatch(fetchEmailLetterFrequencies()).then(() => {
+      expect(store.getActions()).to.eql(expectedActions);
+    })
+  })
+});
+
+describe('fetchDuplicatedPeople', () => {
+  afterEach(() => nock.cleanAll());
+
+  it('creates FETCH_DUPLICATED_SUCCESS after fetching email letter frequecies', () => {
+    const mockData = [
+      [
+       {
+           first_name: "Steven",
+           last_name: "Pease",
+           email_address: "sakatius@gmail.com"
+       },
+       {
+           first_name: "Possibly",
+           last_name: "Duplicate",
+           email_address: "sakatiuss@gmail.com"
+       }
+     ],
+    ];
+
+    nock(process.env.API_HOST)
+      .get('/people/duplicated')
+      .reply(200, mockData);
+
+    const expectedActions = [
+      { type: types.FETCH_DUPLICATED },
+      { type: types.FETCH_DUPLICATED_SUCCESS, data: camelobj(mockData) },
+    ];
+
+    const store = mockStore({ duplicatedPeople: [] })
+    return store.dispatch(fetchDuplicatedPeople()).then(() => {
       expect(store.getActions()).to.eql(expectedActions);
     })
   })
