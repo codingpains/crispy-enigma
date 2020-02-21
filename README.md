@@ -85,6 +85,13 @@ finds the duplicated emails.
 
 ### Technical debt
 
+#### Queries called in use cases
+
+The backend architecture I built is based on the Clean architecture principles, this means I should have separated those
+queries in a data layer and consume those functions in the use cases.
+Given the size of this project it felt good to just leave those queries there, since I know for a fact it wont grow larger, but in a real world project I would have a database layer either passed in the context to each use case or directly imported by each use case.
+Also other concerns such as parsing the inputs and outputs of an endpoint should be in their own files as part of the delivery system, etc. All that for larger projects.
+
 #### Test Coverage
 
 Given the short amount of time to deliver this project I made a few tradeoffs. There are some tests, but not the 100% coverage I usually shot for. I could either build a something cool and complete, or spend lots of time testing it.
