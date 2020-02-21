@@ -21,6 +21,7 @@
   "dependencies": {
     "bootstrap": "^4.3.1",
     "camelobj": "0.0.7",
+    "chart.js": "^2.9.3",
     "dotenv": "^8.2.0",
     "dotenv-webpack": "^1.7.0",
     "lodash": "^4.17.15",
