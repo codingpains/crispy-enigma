@@ -73,9 +73,9 @@ const DataLoader = async () => {
   };
 
   const upsertLetterSQL = (char, count) => {
-    const insert = `INSERT INTO email_letters (letter, frecuency) VALUES ('${char}', ${count})`;
+    const insert = `INSERT INTO email_letters (letter, frequency) VALUES ('${char}', ${count})`;
     const conflict = `ON CONFLICT (letter) DO`;
-    const update = `UPDATE SET frecuency = email_letters.frecuency + ${count}
+    const update = `UPDATE SET frequency = email_letters.frequency + ${count}
       WHERE email_letters.letter = '${char}'`;
     return `${insert} ${conflict} ${update}`;
   };
