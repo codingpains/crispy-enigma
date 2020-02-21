@@ -4,8 +4,11 @@ import nock from 'nock';
 
 import {
   fetchPeople,
+  fetchEmailLetterFrequencies,
   FETCH_PEOPLE,
   FETCH_PEOPLE_SUCCESS,
+  FETCH_FREQUENCIES,
+  FETCH_FREQUENCIES_SUCCESS,
 } from '../../src/data/actions';
 
 const middlewares = [thunk]
@@ -35,8 +38,32 @@ describe('fetchPeople', () => {
 
     const store = mockStore({ people: [] })
     return store.dispatch(fetchPeople()).then(() => {
-      console.log(store.getActions()[1])
+      expect(store.getActions()).to.eql(expectedActions);
+    });
+  });
+});
+
+describe('fetchEmailLetterFrequencies', () => {
+  afterEach(() => nock.cleanAll());
+
+  it('creates FETCH_FREQUENCIES_SUCCESS after fetching email letter frequecies', () => {
+    const mockData = [
+      { letter: 's', frequency: 3 },
+      { letter: 'c', frequency: 4 },
+    ];
+
+    nock(process.env.API_HOST)
+      .get('/people/email-letters-frequency')
+      .reply(200, mockData);
+
+    const expectedActions = [
+      { type: FETCH_FREQUENCIES },
+      { type: FETCH_FREQUENCIES_SUCCESS, data: mockData },
+    ];
+
+    const store = mockStore({ people: [] })
+    return store.dispatch(fetchEmailLetterFrequencies()).then(() => {
       expect(store.getActions()).to.eql(expectedActions);
     })
   })
-})
+});
