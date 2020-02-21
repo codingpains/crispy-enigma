@@ -3,9 +3,11 @@ import PropTypes from 'prop-types'
 import Pagination from '../pagination';
 import PersonRow from './person-row';
 import { ConnectedEmailLettersModal } from '../email-letters-modal';
+import { ConnectedDuplicatedPeopleModal } from '../duplicated-people-modal';
 import './style.scss';
 
-const modalId = 'lettersModal';
+const lettersModalId = 'lettersModal';
+const duplicatedModalId = 'duplicatedModal';
 
 class PeopleTable extends React.PureComponent {
   static propTypes = {
@@ -43,8 +45,15 @@ class PeopleTable extends React.PureComponent {
           type="button"
           className="btn btn-primary"
           data-toggle="modal"
-          data-target={`#${modalId}`}>
+          data-target={`#${lettersModalId}`}>
           See email letters count
+        </button>
+        <button
+          type="button"
+          className="btn btn-primary"
+          data-toggle="modal"
+          data-target={`#${duplicatedModalId}`}>
+          See possible duplicated people
         </button>
       </div>
     );
@@ -69,7 +78,8 @@ class PeopleTable extends React.PureComponent {
             {this.renderPeople()}
           </tbody>
         </table>
-        <ConnectedEmailLettersModal modalId={modalId}/>
+        <ConnectedEmailLettersModal modalId={lettersModalId}/>
+        <ConnectedDuplicatedPeopleModal modalId={duplicatedModalId} />
       </div>
     )
   }

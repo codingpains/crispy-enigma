@@ -19,6 +19,15 @@ const emailLetterFrequencies = (state = {}, action) => {
   }
 };
 
+const duplicatedPeople = (state = [], action) => {
+  switch (action.type) {
+    case types.FETCH_DUPLICATED_SUCCESS:
+      return [...action.data];
+    default:
+      return state;
+  }
+};
+
 const parseFrequencies = (frequecies) => {
   const result = {};
   frequecies.forEach(({letter, frequency}) => {
@@ -30,6 +39,7 @@ const parseFrequencies = (frequecies) => {
 const rootReducer = combineReducers({
   people,
   emailLetterFrequencies,
+  duplicatedPeople,
 });
 
 export default rootReducer;
